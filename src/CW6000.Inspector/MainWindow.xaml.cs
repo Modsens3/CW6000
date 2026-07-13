@@ -1,5 +1,6 @@
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Automation;
@@ -23,7 +24,7 @@ public partial class MainWindow : Window
 
         foreach (AutomationElement window in AutomationElement.RootElement.FindAll(
                      TreeScope.Children,
-                     Condition.TrueCondition))
+                     System.Windows.Automation.Condition.TrueCondition))
         {
             var title = Safe(() => window.Current.Name);
             if (!title.Contains("EPSON", StringComparison.OrdinalIgnoreCase) &&
@@ -46,7 +47,9 @@ public partial class MainWindow : Window
         AutomationElementCollection children;
         try
         {
-            children = element.FindAll(TreeScope.Children, Condition.TrueCondition);
+            children = element.FindAll(
+                TreeScope.Children,
+                System.Windows.Automation.Condition.TrueCondition);
         }
         catch
         {
