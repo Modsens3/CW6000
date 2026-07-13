@@ -1,0 +1,30 @@
+<Window x:Class="CW6000.Inspector.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CW6000 UI Inspector" Height="720" Width="1100"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel Margin="12">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Width="160" Height="34" Margin="0,0,8,0" Click="Scan_Click">Scan Epson Windows</Button>
+            <Button Width="160" Height="34" Margin="0,0,8,0" Click="Export_Click">Export JSON</Button>
+            <TextBlock VerticalAlignment="Center" Text="Open Media Definition or New before scanning." />
+        </StackPanel>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock x:Name="StatusText" Text="Ready" />
+        </StatusBar>
+
+        <DataGrid x:Name="ElementsGrid" AutoGenerateColumns="False" IsReadOnly="True"
+                  CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Depth" Binding="{Binding Depth}" Width="60" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="220" />
+                <DataGridTextColumn Header="AutomationId" Binding="{Binding AutomationId}" Width="180" />
+                <DataGridTextColumn Header="ControlType" Binding="{Binding ControlType}" Width="140" />
+                <DataGridTextColumn Header="ClassName" Binding="{Binding ClassName}" Width="140" />
+                <DataGridTextColumn Header="Bounds" Binding="{Binding Bounds}" Width="180" />
+                <DataGridTextColumn Header="Patterns" Binding="{Binding Patterns}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
